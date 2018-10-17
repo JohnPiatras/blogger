@@ -1,5 +1,7 @@
 # README
 
+This is the jumpstart blogger tutorial which is done as a project for the Odin Project Web Dev 101, Ruby section.
+
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
