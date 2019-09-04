@@ -20,7 +20,7 @@
 <%= render partial: 'articles/comment', collection: @article.comments %>
 <%= render partial: 'comments/form' %>
 <%= link_to "<< Back to Article List", articles_path %>
-<% if logged_in? %>
+<% if logged_in? && @article.author_id == current_user.id %>
   <%= link_to "Delete", article_path(@article), method: :delete , data: {confirm: "Really delete the article?"} %>
   <%= link_to "Edit", edit_article_path(@article) %>
 <% end %>
