@@ -1,7 +1,11 @@
 class ArticlesController < ApplicationController
     before_action :require_login, except: [:show, :index]
+    before_action :validate_author, only: [:edit, :update, :destroy]
 
     include ArticlesHelper
+
+    
+
     def index
         @articles = Article.all
     end
@@ -18,6 +22,7 @@ class ArticlesController < ApplicationController
 
     def create
         @article = Article.new(article_params)
+        @article.author_id = current_user.id
         @article.save
         flash.notice = "Article '#{@article.title}' Created!"
         redirect_to article_path(@article)
@@ -42,4 +47,12 @@ class ArticlesController < ApplicationController
         redirect_to article_path(@article)
     end
 
+    private
+        def validate_author
+            @article = Article.find(params[:id])
+            unless current_user.id == @article.author_id
+                flash.notice = "You must be the article's author to perform this action!"
+                redirect_to article_path(@article)
+            end
+        end
 end
