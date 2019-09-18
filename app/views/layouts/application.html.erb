@@ -12,19 +12,17 @@
   <body>
     <header>
       <h1>Blogger</h1>
-        <% if logged_in? %>
-          <%= "Logged in as #{current_user.email}" %>
-          <%= link_to "(logout)", logout_path, class: "btn" %>
-        <% else %>
-          <%= link_to login_path do %>
-            <div class="btn"><span>Login</span></div>
-          <% end %>
+      <% if logged_in? %>
+        <%= "Logged in as #{current_user.email}" %>
+        <%= link_to "(logout)", logout_path, class: "btn" %>
+      <% else %>
+        <%= link_to login_path, class: "btn" do %>
+          Login
         <% end %>
-
-
+      <% end %>
     </header>
     <p class="flash"><%= flash.notice %></p>
-    
+    <div id="content">
     <div id="sidebar">
       <h3>Most Popular</h3>
       <ul>
@@ -39,7 +37,7 @@
         <li>March</li>
       </ul>
     </div>
-    <div id="content">
+    
       <%= yield %>
     </div>
     <hr>
