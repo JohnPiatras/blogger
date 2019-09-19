@@ -1,12 +1,12 @@
 <div class="container">
-  <h1>All Articles</h1>
+ 
   <% @articles.each do |article| %>
     
     <%= link_to article_path(article) do %>
       <div class="article-summary">
         <h3><%= article.title %></h3>
         <p><%= article.body[0, 100] + "..." %></p>
-        <p>Date published: <%= article.created_at.strftime('%F') %>, X views</p> 
+        <p>Date published: <%= article.created_at.strftime('%F') %>, <%= article.comments.length %> comments, X views</p> 
       </div>
     <% end %>  
 
@@ -14,5 +14,5 @@
   <% end %>
 
 
-  <%= link_to "Create a New Article", new_article_path, class: "new_article" %>
+  <%= link_to "Create a New Article", new_article_path, class: "btn" %>
 </div>

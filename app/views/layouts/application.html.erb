@@ -11,38 +11,43 @@
 
   <body>
     <header>
-      <h1>Blogger</h1>
-      <% if logged_in? %>
-        <%= "Logged in as #{current_user.email}" %>
-        <%= link_to "(logout)", logout_path, class: "btn" %>
-      <% else %>
-        <%= link_to login_path, class: "btn" do %>
-          Login
+      <nav>
+        <%= link_to root_path do %>
+            <h1>Blogger</h1>
         <% end %>
-      <% end %>
+        <div class="align-right">
+          <% if logged_in? %>    
+            <%= "Logged in as #{current_user.email}" %>
+            <%= link_to "Logout", logout_path, class: "btn" %>
+          <% else %>
+            <%= link_to login_path, class: "btn" do %>
+              Login
+            <% end %>
+          <% end %>
+        </div>
+      </nav>
     </header>
-    <p class="flash"><%= flash.notice %></p>
-    <div id="content">
-    <div id="sidebar">
-      <h3>Most Popular</h3>
-      <ul>
-          <li>Article 1</li>
-          <li>Article 2</li>
-          <li>Article 3</li>
-      </ul>
-      <h3>By Month</h3>
-      <ul>
-        <li>January</li>
-        <li>February</li>
-        <li>March</li>
-      </ul>
+    <p class="flash"><%= flash.notice %></p> 
+    <div class="container-row">
+      <div id="sidebar">
+        <h3>Most Popular</h3>
+        <ul>
+            <li>Article 1</li>
+            <li>Article 2</li>
+            <li>Article 3</li>
+        </ul>
+        <h3>By Month</h3>
+        <ul>
+          <li>January</li>
+          <li>February</li>
+          <li>March</li>
+        </ul>
+      </div>
+      <div id="content">
+        <%= yield %>
+      </div>
     </div>
-    
-      <%= yield %>
-    </div>
-    <hr>
-    <h6>
-      
-    </h6>
+
+    <footer>A footer</footer>
   </body>
 </html>

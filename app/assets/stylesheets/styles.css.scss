@@ -1,12 +1,20 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
 
+:root {
+  --nav-background: #a260ff;
+  --btn-color: #ffaa60;
+  --background-color: #fffa60;
+  --shadow-color: #ddd840;
+  --highlight-color: #fffc82;
+ }
+
 html {
   font-size: 16px;
   font-family: 'Open Sans', sans-serif;
 }
 
 body {
-  background-color: #fff;
+  background-color: var(--background-color);
   font-size: 1rem;
   margin: 0.5rem 1rem 0.5rem 1rem;
 }
@@ -14,6 +22,7 @@ body {
 h1 {
   font-size:2rem;
   font-weight:bolder;
+  margin:0;
 }
 
 .clear {
@@ -22,13 +31,21 @@ h1 {
   overflow: hidden;
 }
 
+.flash{
+  height:2em;
+  background-color:var(--nav-background);
+  margin-top:0;
+  border-radius:0 0 1em 1em;
+  text-align:center;
+  color:var(--highlight-color);
+}
 
-#content {
-  border:1px solid blue;
- 
-  padding:0 1em 0 1em;
+.container-row{
   display:flex;
-  align-items:baseline;
+}
+
+#content { 
+  padding:0 1em 0 1em;
 }
 
 #content h1:first-of-type{
@@ -36,10 +53,11 @@ h1 {
 }
 
 #sidebar {
-  float: left;
-  border: 1px solid red;
-  width:25%;
-  padding:0;
+  background-color: var(--nav-background);
+  color: white;
+  flex: 0 0 14em;
+  padding:1em;
+  border-radius: 1em;
 }
 
 #sidebar h3:first-of-type{
@@ -51,22 +69,34 @@ a {
   text-decoration: none;
 }
 
-a .article-summary{
-  &:hover{
-    background:#ccc;
-    transition: background 0.3s;
-  }
+a:hover {
+
 }
 
 .article-summary{
   padding: 0 1em 1em 1em;
+  color:#666;
+}
+
+.article-summary h3{
+  color:black;
 }
 .article-summary p {
   padding-left:2em;
   font-size: 1.0em;
-  color: #666;
   margin:0;
 }
+
+a .article-summary{
+  &:hover{
+    background:var(--highlight-color);
+    transition: 1.0s;
+    border-radius:0.5em;
+    color:black;
+  }
+}
+
+
 
 .article-summary p:last-child {
   font-size:0.75em;
@@ -79,29 +109,127 @@ a .article-summary{
   margin:0;
 }
 
-.btn {
-  background: blue;
-  color:white;
-  height:100%;
-}
 
 header {
+  background-color: var(--nav-background);
+  border-radius:1em 1em 0 0;
+  padding-left:1em;
+  padding-right:1em;
+  padding-top:0.33em;
+  color:white;
+}
+
+header a h1:hover{
+  text-shadow: 0px 0px 5px var(--highlight-color);
+  transition:0.25s;
+}
+
+header nav{
   display:flex;
-  flex-direction: row;
-  position:relative;
-  top:0;
-  left:0;
+  flex-direction:row;
   align-items:center;
 }
 
-header h1 {
-  padding:0;
+header nav h1{
   margin:0;
-  vertical-align:middle;
 }
-header .btn {
+
+
+.btn {
+  background-color: var(--btn-color);
   padding:0.5em 1em 0.5em 1em;
   margin:0;
   height:100%;
-  margin-left: auto;
+  border-radius:0.25em;
+  font-weight:bold;
+  border:0;
+  box-shadow: 0;
+  color:white;
+  font-size:1rem;
+}
+
+.btn:hover {
+  box-shadow: -3px 3px 5px 1px #666;
+  transition: 0.25s;
+}
+
+header .btn:hover{
+  box-shadow: 0px 0px 5px 5px var(--highlight-color);
+  
+  transition:0.25s;
+}
+
+.align-right{
+  margin-left:auto;
+}
+
+.tag{
+  display:inline-block;
+  background-color: var(--btn-color);
+  font-size:0.8em;
+  padding:0.1em 0.25em 0.1em 0.25em;
+  margin:0 0.2em 0 0.2em;
+  color:white;
+}
+
+.tag:hover{
+  box-shadow: 0px 0px 5px 5px white;
+  transition:0.25s;
+}
+
+.attribution{
+  font-style:italic;
+  font-size:1em;
+  color:#444;
+  margin-left:1em;
+}
+
+.attribution:hover{
+  font-weight:bold;
+}
+
+.align-baseline{
+  align-items:baseline;
+}
+
+.article-body{
+  background-color:var(--highlight-color);
+}
+
+.comment{
+  background-color:var(--highlight-color);
+  box-shadow: -3px 3px 5px 1px var(--shadow-color);
+  padding:1em 1em 1em 1em;
+  margin:1em;
+  border-radius:0.5em;
+}
+
+.comment h4{
+  margin:0;
+}
+.comment p:last-child{
+  font-style:italic;
+  font-size:0.8em;
+  color:#444;
+}
+
+.form-field{
+  width:100%;
+  border-radius:3px;
+  border:1px solid var(--shadow-color);
+}
+
+.form-field:focus{
+  border:5px solid var(--shadow-color);
+  border-radius:3px;
+  transition:0.25s;
+}
+
+footer {
+  background-color: var(--nav-background);
+  border-radius:1em;
+  margin-top:1em;
+  margin-bottom:1em;
+  padding:1em;
+  color:white;
 }
