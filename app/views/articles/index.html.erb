@@ -1,18 +1,14 @@
 <div class="container">
  
   <% @articles.each do |article| %>
-    
-    <%= link_to article_path(article) do %>
-      <div class="article-summary">
-        <h3><%= article.title %></h3>
-        <p><%= article.body[0, 100] + "..." %></p>
-        <p>Date published: <%= article.created_at.strftime('%F') %>, <%= article.comments.length %> comments, X views</p> 
-      </div>
-    <% end %>  
-
-
+    <%= render partial: 'articles/article_summary', locals: { article: article } %>
   <% end %>
 
 
-  <%= link_to "Create a New Article", new_article_path, class: "btn" %>
+  <% if logged_in? %>
+    <br>
+    <hr>
+    <br>
+    <%= link_to "Create a New Article", new_article_path, class: "btn" %>
+  <% end %>
 </div>

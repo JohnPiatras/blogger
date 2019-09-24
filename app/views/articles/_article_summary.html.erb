@@ -1,0 +1,11 @@
+    <%= link_to article_path(article) do %>
+      <div class="article-summary">
+        <h3><%= article.title %></h3>
+        <p><%= article.body[0, 100] + "..." %></p>
+        <p>Date published: <%= article.created_at.strftime('%F') %>, <%= article.comments.length %> comments, X views</p> 
+      
+          <% article.tags.each do |tag| %>
+            <%= link_to tag.name, tag_path(tag), class: "tag" %>
+          <% end %>
+      </div>
+    <% end %> 

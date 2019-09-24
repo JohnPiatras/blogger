@@ -2,6 +2,7 @@
 
 :root {
   --nav-background: #a260ff;
+  --content-link: #6020bb;
   --btn-color: #ffaa60;
   --background-color: #fffa60;
   --shadow-color: #ddd840;
@@ -25,6 +26,10 @@ h1 {
   margin:0;
 }
 
+ul {
+  list-style:none;
+}
+
 .clear {
   clear: both;
   height: 0;
@@ -46,6 +51,7 @@ h1 {
 
 #content { 
   padding:0 1em 0 1em;
+  flex: 1 1;
 }
 
 #content h1:first-of-type{
@@ -70,16 +76,28 @@ a {
 }
 
 a:hover {
+  text-decoration: none;
+}
 
+.underlined-link {
+  text-decoration:none;
+}
+
+.underlined-link:hover {
+  text-decoration:underline;
 }
 
 .article-summary{
   padding: 0 1em 1em 1em;
   color:#666;
+  text-decoration:none;
 }
 
 .article-summary h3{
   color:black;
+  font-weight:bold;
+  font-size:1.25em;
+  margin:0;
 }
 .article-summary p {
   padding-left:2em;
@@ -87,7 +105,12 @@ a:hover {
   margin:0;
 }
 
-a .article-summary{
+.article-summary p:last-of-type {
+  font-size:0.75em;
+  padding-left:0;
+}
+
+.article-summary{  
   &:hover{
     background:var(--highlight-color);
     transition: 1.0s;
@@ -95,20 +118,6 @@ a .article-summary{
     color:black;
   }
 }
-
-
-
-.article-summary p:last-child {
-  font-size:0.75em;
-  padding-left:0;
-}
-
-.article-summary h3 {
-  font-weight:bold;
-  font-size:1.25em;
-  margin:0;
-}
-
 
 header {
   background-color: var(--nav-background);
@@ -119,7 +128,7 @@ header {
   color:white;
 }
 
-header a h1:hover{
+.glowing-link:hover{
   text-shadow: 0px 0px 5px var(--highlight-color);
   transition:0.25s;
 }
@@ -135,7 +144,7 @@ header nav h1{
 }
 
 
-.btn {
+.btn, button, input[type=submit] {
   background-color: var(--btn-color);
   padding:0.5em 1em 0.5em 1em;
   margin:0;
@@ -148,9 +157,9 @@ header nav h1{
   font-size:1rem;
 }
 
-.btn:hover {
-  box-shadow: -3px 3px 5px 1px #666;
-  transition: 0.25s;
+.btn:hover, button:hover, input[type=submit]:hover {
+  box-shadow: 0px 0px 5px 5px white;
+  transition:0.25s;
 }
 
 header .btn:hover{
@@ -177,6 +186,21 @@ header .btn:hover{
   transition:0.25s;
 }
 
+.article-summary .tag {
+  font-size:0.7em;
+  margin: 0 0.2em 0 0; 
+}
+
+.tag-text{
+
+  background-color: var(--btn-color);
+  font-size:0.8em;
+  padding:0.1em 0.25em 0.1em 0.25em;
+  margin:0 0.2em 0 0.2em;
+  color:white;
+
+}
+
 .attribution{
   font-style:italic;
   font-size:1em;
@@ -184,7 +208,7 @@ header .btn:hover{
   margin-left:1em;
 }
 
-.attribution:hover{
+.attribution a {
   font-weight:bold;
 }
 
@@ -213,16 +237,23 @@ header .btn:hover{
   color:#444;
 }
 
-.form-field{
+input[type=text], input[type=password], textarea{
   width:100%;
   border-radius:3px;
   border:1px solid var(--shadow-color);
+  line-height:1.5em;
+  margin:5px;
 }
 
-.form-field:focus{
+input[type=text]:focus, input[type=password]:focus, textarea:focus{
   border:5px solid var(--shadow-color);
   border-radius:3px;
-  transition:0.25s;
+ 
+  margin:0;
+}
+
+textarea{
+  height:10em;
 }
 
 footer {
@@ -232,4 +263,12 @@ footer {
   margin-bottom:1em;
   padding:1em;
   color:white;
+}
+
+img{
+  width:100%;
+}
+
+td{
+  padding: 0 0.25em 2em 0;
 }
