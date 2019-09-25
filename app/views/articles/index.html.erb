@@ -1,11 +1,14 @@
-<h1>All Articles</h1>
-
-<ul id="articles">
+<div class="container">
+ 
   <% @articles.each do |article| %>
-    <li>
-      <%= link_to article.title, article_path(article), class: "article_title", id: "article_#{article.id}" %>
-    </li>
+    <%= render partial: 'articles/article_summary', locals: { article: article } %>
   <% end %>
-</ul>
 
-<%= link_to "Create a New Article", new_article_path, class: "new_article" %>
+
+  <% if logged_in? %>
+    <br>
+    <hr>
+    <br>
+    <%= link_to "Create a New Article", new_article_path, class: "btn" %>
+  <% end %>
+</div>

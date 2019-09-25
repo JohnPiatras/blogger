@@ -20,10 +20,19 @@
   <% if @article.image.exists? %>
     <%= image_tag @article.image.url %><br />
   <% end %>
-  <%= f.label :image, "Attach a New Image" %><br />
-  <%= f.file_field :image %>
+  
+  <label class="btn">
+    Attach a new image
+    <span style="display:none;">
+      <%= f.file_field :image %>
+    </span>
+  </label>
+
+    <%#= f.label :image, "Attach a New Image" %><br />
+    <%#= f.file_field :image, class: "form-field btn" %>
 </p>
-<p>
-  <%= f.submit %>
+
+<p>  
+  <%= button_tag 'Submit' %>
 </p>
 <% end %>

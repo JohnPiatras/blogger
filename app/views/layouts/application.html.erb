@@ -10,16 +10,44 @@
   </head>
 
   <body>
-    <p class="flash"><%= flash.notice %></p>
-    <%= yield %>
-    <hr>
-    <h6>
-      <% if logged_in? %>
-        <%= "Logged in as #{current_user.email}" %>
-        <%= link_to "(logout)", logout_path %>
-      <% else %>
-        <%= link_to "(login)", login_path %>
-      <% end %>
-    </h6>
+    <header>
+      <nav>
+        <%= link_to root_path, class: "glowing-link" do %>
+            <h1>Blogger</h1>
+        <% end %>
+        <div class="align-right">
+          <% if logged_in? %>    
+            <%= "Logged in as #{current_user.email}" %>
+            <%= link_to "Logout", logout_path, class: "btn" %>
+          <% else %>
+            <%= link_to login_path, class: "btn" do %>
+              Login
+            <% end %>
+          <% end %>
+        </div>
+      </nav>
+    </header>
+    <p class="flash"><%= flash.notice %></p> 
+    <div class="container-row">
+      <div id="sidebar">
+        <h3>Most Popular</h3>
+        <ul>
+            <li><a href="" class="underlined-link">Article 1</a></li>
+            <li><a href="" class="underlined-link">Article 2</a></li>
+            <li><a href="" class="underlined-link">Article 3</a></li>
+        </ul>
+        <h3>By Month</h3>
+        <ul>
+          <li class="underlined-link">January</li>
+          <li class="underlined-link">February</li>
+          <li class="underlined-link">March</li>
+        </ul>
+      </div>
+      <div id="content">
+        <%= yield %>
+      </div>
+    </div>
+
+    <footer>A footer</footer>
   </body>
 </html>

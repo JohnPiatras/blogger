@@ -12,11 +12,9 @@
 
 <h2>Articles by <%= @author.username %> </h2>
 <% @author.articles.each do |article| %>
-    <li>
-      <%= link_to article.title, article_path(article) %>
-    </li>
+    <%= render partial: 'articles/article_summary', locals: { article: article } %>
 <% end %>
 <% if logged_in? %>
-  <%= link_to 'Edit', edit_author_path(@author) %> |
+  <%= link_to 'Edit', edit_author_path(@author), class: "btn" %>
 <% end %>
-<%= link_to 'Back', authors_path %>
+<%= link_to 'Back', authors_path, class: "btn" %>
