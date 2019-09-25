@@ -7,6 +7,9 @@ Rails.application.routes.draw do
   resources :tags
   resources :authors
 
+  get 'popular' => 'articles#show_popular'
+  get 'month/:month' => 'articles#show_month', as: :month
+
   resources :author_sessions, only: [ :new, :create, :destroy ]
 
   # here's how we define routes

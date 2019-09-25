@@ -1,0 +1,28 @@
+<div id="sidebar">
+    <%= link_to popular_path, class: "glowing-link" do %>
+        <h3>View Top 5 Articles</h3>
+    <% end %>
+    
+    <ul>
+    <% Article.all.order(view_count: :desc).limit(5).each do |article| %>
+        <li>
+        
+            <%= link_to article_path(article), class: "glowing-link" do %>
+                <%= article.title[0,20] + '...' %>
+            <% end %>
+        </li>
+    <% end %>
+    </ul>
+
+ 
+    <h3>By Month</h3>
+    <ul>
+        <% for i in 1..12 do%>
+            <li>
+                <%= link_to month_path(i), class: "glowing-link" do %>
+                    <%= Date::MONTHNAMES[i] %>
+                <% end %>
+            </li>
+        <% end %>
+    </ul>
+</div>

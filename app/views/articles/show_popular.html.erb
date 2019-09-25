@@ -1,0 +1,17 @@
+
+
+<div class="container">
+  <h1>Top 5 articles</h1>
+
+  <% @articles.each do |article| %>
+    <%= render partial: 'articles/article_summary', locals: { article: article } %>
+  <% end %>
+
+
+  <% if logged_in? %>
+    <br>
+    <hr>
+    <br>
+    <%= link_to "Create a New Article", new_article_path, class: "btn" %>
+  <% end %>
+</div>

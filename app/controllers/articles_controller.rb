@@ -10,8 +10,20 @@ class ArticlesController < ApplicationController
         @articles = Article.all
     end
 
+    def show_popular
+        @articles = Article.all.order(view_count: :desc).limit(5)
+    end
+
+    def show_month
+        m = params[:month].to_i
+        @month = Date::MONTHNAMES[m]
+        
+        @articles = Article.where("cast(strftime('%m', created_at) as int) = ?", m)
+    end
+
     def show
         @article = Article.find(params[:id])
+        @article.inc_views
         @comment = Comment.new
         @comment.article_id = @article.id
     end
