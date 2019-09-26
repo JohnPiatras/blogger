@@ -23,7 +23,15 @@ class ArticlesController < ApplicationController
         m = params[:month].to_i
         @month = Date::MONTHNAMES[m]
         
-        @articles = Article.where("cast(strftime('%m', created_at) as int) = ?", m)
+        adapter_type = ActiveRecord::Base.connection.adapter_name.downcase.to_sym
+        case adapter_type
+            when :sqlite
+                @articles = Article.where("cast(strftime('%m', created_at) as int) = ?", m)
+            when :postgresql
+                @articles = Article.where('extract(month from created_at) = ?', m)
+            else
+                raise NotImplementedError, "Unknown adapter type '#{adapter_type}'"
+        end
     end
 
     def show
