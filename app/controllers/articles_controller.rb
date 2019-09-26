@@ -1,5 +1,5 @@
 class ArticlesController < ApplicationController
-    before_action :require_login, except: [:show, :index]
+    before_action :require_login, except: [:show, :index, :show_popular, :show_month]
     before_action :validate_author, only: [:edit, :update, :destroy]
 
     include ArticlesHelper
