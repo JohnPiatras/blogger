@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 
   get 'popular' => 'articles#show_popular'
   get 'month/:month' => 'articles#show_month', as: :month
+  get 'rss_feed' => 'articles#index', :as => :rss_feed, :defaults => { :format => 'rss'}
 
   resources :author_sessions, only: [ :new, :create, :destroy ]
 
